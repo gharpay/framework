@@ -1,12 +1,16 @@
 {
     "name": "laravel/framework",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["framework", "laravel", "gharpay"],
     "license": "MIT",
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+            "name" : "Rohan Kapadia",
+            "email" : "rohan@gharpay.in"
         }
     ],
     "require": {
