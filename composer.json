@@ -85,10 +85,5 @@
             "Illuminate": "src/"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "4.0-dev"
-        }
-    },
     "minimum-stability": "dev"
 }
