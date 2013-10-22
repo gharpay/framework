@@ -478,7 +478,9 @@ class MySqlGrammar extends Grammar {
 	 */
 	protected function typeTimestamp(Fluent $column)
 	{
-		if ( ! $column->nullable) return 'timestamp default 0';
+		if( $column->autoUpdate ) return 'timestamp default CURRENT_TIMESTAMP';
+		
+		if ( ! $column->nullable && ! $column->autoUpdate) return 'timestamp default 0';
 
 		return 'timestamp';
 	}
