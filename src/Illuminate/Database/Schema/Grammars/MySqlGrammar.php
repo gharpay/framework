@@ -18,7 +18,7 @@ class MySqlGrammar extends Grammar {
 	 *
 	 * @var array
 	 */
-	protected $modifiers = array('Unsigned', 'Nullable', 'Default', 'Increment', 'After');
+	protected $modifiers = array('Unsigned', 'Nullable', 'Default', 'Increment', 'After', 'Autoupdate');
 
 	/**
 	 * The possible column serials
@@ -560,6 +560,23 @@ class MySqlGrammar extends Grammar {
 		if ( ! is_null($column->after))
 		{
 			return ' after '.$this->wrap($column->after);
+		}
+	}
+
+	/**
+	 * Get the SQL for an "ON UPDATE CURRENT_TIMESTAMP" for timestamp columns
+	 *
+	 * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
+	 * @param  \Illuminate\Support\Fluent  $column
+	 * @return string|null
+	 */
+	protected function modifyAutoupdate(Blueprint $blueprint, Fluent $column)
+	{
+		if( ! is_null($column->autoUpdate) &&
+			$column->autoUpdate && 
+			'timestamp' == $column->getType() )
+		{
+			return ' on update CURRENT_TIMESTAMP';
 		}
 	}
 
