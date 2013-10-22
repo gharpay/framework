@@ -18,7 +18,7 @@ class MySqlGrammar extends Grammar {
 	 *
 	 * @var array
 	 */
-	protected $modifiers = array('Unsigned', 'Nullable', 'Default', 'Increment', 'After', 'Autoupdate');
+	protected $modifiers = array('Unsigned', 'Nullable', 'Default', 'Increment', 'After', 'AutoUpdate');
 
 	/**
 	 * The possible column serials
@@ -561,11 +561,11 @@ class MySqlGrammar extends Grammar {
 	 * @param  \Illuminate\Support\Fluent  $column
 	 * @return string|null
 	 */
-	protected function modifyAutoupdate(Blueprint $blueprint, Fluent $column)
+	protected function modifyAutoUpdate(Blueprint $blueprint, Fluent $column)
 	{
 		if( ! is_null($column->autoUpdate) &&
 			$column->autoUpdate && 
-			'timestamp' == $column->getType() )
+			'timestamp' == $this->getLaravelType($column) )
 		{
 			return ' on update CURRENT_TIMESTAMP';
 		}
