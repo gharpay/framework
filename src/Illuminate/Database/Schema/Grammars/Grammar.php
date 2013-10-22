@@ -266,4 +266,15 @@ abstract class Grammar extends BaseGrammar {
 		return $tableDiff;
 	}
 
+	/**
+	 * Gets the type that laravel uses for the different columns of MySql
+	 *
+	 * @param \Illuminate\Support\Fluent  $column
+	 * @return  string
+	 */
+	protected function getLaravelType(Fluent $column)
+	{
+		return $column->type;
+	}
+
 }
